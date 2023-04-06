@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import "./App.css";
+import "../App.css";
 import TextField from "@mui/material/TextField";
 import { Box } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
-import { busses, stations } from "./utils/data";
+import { busses, stations } from "../utils/data";
 import Button from "@mui/material/Button";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { Searchstations } from "./typings/types";
+import { Searchstations } from "../typings/types";
 
 /*
 1. npx create-react-app apps --template typescript
@@ -90,7 +90,7 @@ function BusApp() {
           <h4>{searchStations.startStation.label}</h4>
         )}
         {searchStations.endStation && (
-          <h4>hello{searchStations.endStation.label}</h4>
+          <h4>{searchStations.endStation.label}</h4>
         )}
       </Box>
     </Box>

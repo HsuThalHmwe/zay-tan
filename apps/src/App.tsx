@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import TextField from "@mui/material/TextField";
-import { Box } from "@mui/material";
-import Autocomplete from "@mui/material/Autocomplete";
-import { busses, stations } from "./utils/data";
-import Button from "@mui/material/Button";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { Searchstations } from "./typings/types";
+import { Box, Button } from "@mui/material";
 
 /*
 1. npx create-react-app apps --template typescript
@@ -16,34 +8,6 @@ import { Searchstations } from "./typings/types";
 3. Try to use Mui sample components
 */
 function App() {
-  const [searchStations, setSearchStations] = useState<Searchstations>({
-    startStation: null,
-    endStation: null,
-  });
-  console.log(searchStations);
-  const handleOnClick = () => {
-    const busWithStartStation = busses.filter((bus) =>
-      bus.stations.find(
-        (station) => station.id === searchStations.startStation?.id
-      )
-    );
-
-    const busWithEndStation = busses.filter((bus) =>
-      bus.stations.find(
-        (station) => station.id === searchStations.endStation?.id
-      )
-    );
-
-    const directBus = busWithStartStation.filter((bus) =>
-      bus.stations.find(
-        (station) => station.id === searchStations.endStation?.id
-      )
-    );
-    console.log("bus name A is", busWithStartStation);
-    console.log("bus name B is", busWithEndStation);
-    console.log("bus name Direct is", directBus);
-  };
-
   return (
     <Box
       sx={{
@@ -51,51 +15,15 @@ function App() {
         flexDirection: "column",
         justifyContent: "center",
         mt: 5,
+        alignItems: "center",
       }}
     >
-      <Box sx={{ margin: "0 auto", textAlign: "center" }}>
-        <Autocomplete
-          disablePortal
-          id="stations"
-          options={stations}
-          onChange={(evt, value) => {
-            console.log("Station A is: ", value);
-            setSearchStations({ ...searchStations, startStation: value });
-          }}
-          sx={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="stations A" />}
-        />
-        <Autocomplete
-          disablePortal
-          id="stations"
-          options={stations}
-          onChange={(evt, value) => {
-            console.log("Station B is: ", value);
-            setSearchStations({ ...searchStations, endStation: value });
-          }}
-          sx={{ width: 300, mt: 2 }}
-          renderInput={(params) => <TextField {...params} label="stations B" />}
-        />
-        <Button variant="outlined" sx={{ mt: 2 }} onClick={handleOnClick}>
-          Search Bus
-        </Button>
-      </Box>
-      <Box sx={{ margin: "0 auto", mt: 2 }}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker />
-        </LocalizationProvider>
-      </Box>
-      {/* {startStation: {…}, endStation: {…}}
-      endStation: {id: 3, label: 'Yankin'}
-      startStation: {id: 1, label: 'Hledan'}[[Prototype]]: Object */}
-      <Box sx={{ margin: "0 auto", mt: 2 }}>
-        {searchStations.startStation && (
-          <h4>{searchStations.startStation.label}</h4>
-        )}
-        {searchStations.endStation && (
-          <h4>{searchStations.endStation.label}</h4>
-        )}
-      </Box>
+      <Button variant="contained" sx={{ width: "300px", m: 2 }}>
+        <a href="/passport">Passport Apps</a>
+      </Button>
+      <Button variant="contained" sx={{ width: "300px", m: 2 }}>
+        <a href="/bus">Bus Apps</a>
+      </Button>
     </Box>
   );
 }

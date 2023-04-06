@@ -3,12 +3,29 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { readFileSync } from "fs";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import PassportApps from "./components/PassportApp";
+import BusApp from "./components/BusApp";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/passport",
+    element: <PassportApps />,
+  },
+  {
+    path: "/bus",
+    element: <BusApp />,
+  },
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-root.render(<App />);
+root.render(<RouterProvider router={router} />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
